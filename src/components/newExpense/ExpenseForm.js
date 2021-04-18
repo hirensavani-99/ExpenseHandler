@@ -10,6 +10,8 @@ const ExpenseForm = (props) => {
         date: ''
     })
 
+    const [form, setform] = useState(true)
+
 
     const formSubmitHandler = (event) => {
         event.preventDefault()
@@ -49,13 +51,15 @@ const ExpenseForm = (props) => {
     }
 
     const settingDateHandler = (event) => {
+
         setUserInput((prevState) => {
             return {
                 ...prevState,
-                date: event.target.value
+                date: new Date(event.target.value)
             }
         })
     }
+
 
     return (
         <form onSubmit={formSubmitHandler}>
@@ -74,7 +78,9 @@ const ExpenseForm = (props) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="button" onClick={props.onCancle}>Cancle</button>
                 <button type="submit">Add Expense</button>
+
             </div>
         </form>
     )
